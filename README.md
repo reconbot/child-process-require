@@ -1,4 +1,5 @@
 # Child Process Require
+[![Build Status](https://travis-ci.org/reconbot/child-process-require.svg?branch=master)](https://travis-ci.org/reconbot/child-process-require)
 Require a function that returns a promise and run it in a child process.
 
 This was made as a way to take lengthy cpu intensive tasks and run them in a child process. Arguments and return values are passed using node's [child process IPC](https://nodejs.org/api/process.html#process_process_send_message_sendhandle_options_callback) channel. This means all objects will be JSON stringified and parsed. Rejected Error objects will be converted back into error objects with thier message, stack traces and all iterable properties preserved.
