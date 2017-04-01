@@ -1,8 +1,10 @@
 # Child Process Require
 [![Build Status](https://travis-ci.org/reconbot/child-process-require.svg?branch=master)](https://travis-ci.org/reconbot/child-process-require)
-Require a function that returns a promise and run it in a child process.
+[![npm](https://img.shields.io/npm/dm/child-process-require.svg?maxAge=2592000)](http://npmjs.com/package/child-process-require)
 
-This is a way to take lengthy cpu intensive tasks and run them in a child process. This allows you to take advantage of multiple cpu cores. Child Process Require (`cpr`) will let you require a function from a file and run it in a new `node` process each time you call it. Almost as if it were all in a single process.
+Require a function and run it in a child process.
+
+This is a way to take lengthy, cpu intensive tasks and run them in a child process. Allowing you to take advantage of multiple cpu cores. Child Process Require (`cpr`) will let you require a function from a file and run it in a new `node` process each time you call it. Almost as if it were all in a single process.
 
 - Each execution of a required function starts a new `node` process
 - The function's return value will be wrapped in `Promise`.
