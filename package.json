@@ -1,0 +1,44 @@
+{
+  "name": "child-process-require",
+  "version": "0.0.0",
+  "description": "Require a function that returns a promise and run it in a child process.",
+  "main": "lib",
+  "scripts": {
+    "test": "mocha --bail",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reconbot/child-process-require.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reconbot/child-process-require/issues"
+  },
+  "homepage": "https://github.com/reconbot/child-process-require#readme",
+  "dependencies": {
+    "execa": "^0.6.3",
+    "invariant": "^2.2.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "debug": "^2.6.3",
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
+    "mocha": "^3.2.0"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "env": {
+      "node": true,
+      "mocha": true
+    },
+    "globals": {
+      "expect": false,
+      "assert": false
+    }
+  }
+}
