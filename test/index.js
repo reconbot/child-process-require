@@ -1,3 +1,5 @@
+'use strict'
+
 const assert = require('chai').assert
 const childProcessRequire = require('../')
 
@@ -6,6 +8,12 @@ const cpr = scriptName => childProcessRequire(require.resolve(`./scripts/${scrip
 describe('childProcessRequire', () => {
   it('resolves with data when the child resolves', () => {
     return cpr('basic')().then(response => {
+      assert.equal(response, 'Success!')
+    })
+  })
+
+  it('resolves with data when the child returns data', () => {
+    return cpr('return')().then(response => {
       assert.equal(response, 'Success!')
     })
   })
@@ -50,7 +58,7 @@ describe('childProcessRequire', () => {
   })
 
   it('allows arguments', () => {
-    return cpr('argument-script')(1, '2', null, [{}], true).then(response => {
+    return cpr('arguments')(1, '2', null, [{}], true).then(response => {
       assert.deepEqual(response, [1, '2', null, [{}], true])
     })
   })
@@ -78,7 +86,7 @@ describe('childProcessRequire', () => {
       throw new Error('should not have resolved')
     }, error => {
       assert.instanceOf(error, Error)
-      assert.equal(error.message, `Childprocess exited before resolving a value`)
+      assert.equal(error.message, `child has exited without resolving promise`)
     })
   })
 
@@ -91,8 +99,22 @@ describe('childProcessRequire', () => {
     })
   })
 
-  // reach goals!
-  it('allows circular data structures as arguments')
-  it('allows functions as arguments')
-  it('provides an alternative communications channel')
+  it('allows functions as arguments', () => {
+    let calledBack = false
+    const cb = (input) => {
+      calledBack = true
+      assert.equal(input, 'DATA!')
+    }
+    return cpr('callback')(cb).then(() => {
+      assert.isTrue(calledBack)
+    })
+  })
+
+  it('allows circular data structures as arguments', () => {
+    const args = { a: 1 }
+    args.b = args
+    return cpr('arguments')(args).then(response => {
+      assert.deepEqual(response, [args])
+    })
+  })
 })
