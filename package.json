@@ -1,6 +1,6 @@
 {
   "name": "child-process-require",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Require a function that returns a promise and run it in a child process.",
   "main": "lib",
   "scripts": {
