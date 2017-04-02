@@ -42,7 +42,15 @@ Promise.all([
 
 Arguments and return values are passed between node processes using NodeJs's [child process IPC](https://nodejs.org/api/process.html#process_process_send_message_sendhandle_options_callback) channel and the [dnode protocol](https://github.com/substack/dnode-protocol). This means all objects will be JSON stringified and parsed. Rejected Error objects will be converted back into error objects with their message, stack traces and all iterable properties preserved. The dnode protocol allows for circular references and callback functions. (Functions who's return value isn't needed.)
 
-### Todo
+## API
+
+- `childProcessRequire(path, [opts])` returns a function that takes any arguments and passes them to the default export or `module.export` of file at the `path`. Returns a promise that resolves to the return of the remote function
+- `opts.nodeBin` optional binary to run for nodejs, defaults to `process.argv[0]`. This is a perfect place to specify the binary for an alternate version of node. When [this issue](https://github.com/babel/babel/issues/4554#issuecomment-290958986) closes you'll be able to use `babel-node` here but for now it doesn't work.
+- `opts.requires` An array of strings of package names to require before requiring your function's file. This is the perect place for `babel-register`.
+- `opts.env` An object of env vars to copy into the child process's copy of `process.env`
+
+
+## Todo
 - Better API docs
 - Expose `execa`'s options including timeouts
 - Test to see if alternative nodejs runtimes work (etc, `babel-node`)
