@@ -14,6 +14,7 @@ This is a way to take lengthy, cpu intensive tasks and run them in a child proce
 - Crashes will become promise rejections
 - Rejections of error objects will be recreated with stack traces
 - If you `process.exit` or crash an attempt will be made to stop the child process
+- The child will be terminated when the child function resolves
 
 It works like this
 ```js

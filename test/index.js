@@ -47,7 +47,13 @@ describe('childProcessRequire', () => {
     })
   })
 
-  it(`gives stderr and stdout - this objectivly passes but isn't yet tested`)
+  it(`gives stderr and stdout - this objectively passes but isn't yet tested`)
+
+  it('ends when the child function returns regardless of if there if there still work on the event loop', () => {
+    return cpr('keep-alive')().then(response => {
+      assert.equal(response, 'Success!')
+    })
+  })
 
   it('gives the local environment', () => {
     delete process.env.testEnv
